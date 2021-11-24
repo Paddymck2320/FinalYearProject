@@ -89,19 +89,17 @@ def scraper(nfl: object, offensive_category = 'null', defensive_category = 'null
                 answer.loc[i] = list(cols)
                 i = i + 1
 
-            # catches the error when there is no table to scrape
+
         except AttributeError:
             continue
 
-            # drop repeated columns
+            # drop any repeated columns
         answer.drop(columns=nfl.columns_not_wanted, inplace=True)
 
-        # add fense and category to file name
         answer = answer.add_prefix(str(nfl.fense) + '_' + str(nfl.category).lower() + '_')
 
         # write to excel
         answer.to_excel(nfl.fense + '_' + nfl.category + ".xlsx")
 
-    # Call Scraper function on each nfl_category_obj
     for nfl_obj in list_of_NFL_category_objs:
         scraper(nfl_obj)
