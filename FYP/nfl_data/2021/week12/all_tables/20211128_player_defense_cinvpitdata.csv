@@ -1,0 +1,50 @@
+,Player,Tm,DefInt,DefIntYrds,DefIntTD,DefIntLng,DefPD,DefSk,DefCombo,DefSolo,DefAst,DefTFL,DefQBHit,DefFR,Defyds,DefTD,DefFF
+0,Minkah Fitzpatrick,PIT,1,18,0,18,1,0.0,9,5,4,0,0,0,0,0,0
+1,Cameron Heyward,PIT,0,0,0,0,0,1.0,8,3,5,1,1,0,0,0,0
+2,Chris Wormley,PIT,0,0,0,0,0,1.0,4,2,2,1,1,0,0,0,0
+3,Joe Schobert,PIT,0,0,0,0,0,0.0,10,8,2,0,0,0,0,0,0
+4,Terrell Edmunds,PIT,0,0,0,0,0,0.0,6,5,1,1,0,0,0,0,0
+5,Arthur Maulet,PIT,0,0,0,0,0,0.0,6,3,3,0,0,0,0,0,0
+6,Devin Bush Jr.,PIT,0,0,0,0,0,0.0,5,2,3,0,0,0,0,0,0
+7,Alex Highsmith,PIT,0,0,0,0,0,0.0,5,3,2,2,0,0,0,0,0
+8,James Pierre,PIT,0,0,0,0,0,0.0,4,3,1,0,0,0,0,0,0
+9,Cameron Sutton,PIT,0,0,0,0,0,0.0,4,3,1,0,0,0,0,0,0
+10,Taco Charlton,PIT,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+11,Henry Mondeaux,PIT,0,0,0,0,0,0.0,2,0,2,0,0,0,0,0,0
+12,Derrek Tuszka,PIT,0,0,0,0,0,0.0,2,0,2,0,1,0,0,0,0
+13,T.J. Watt,PIT,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+14,Najee Harris,PIT,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+15,Justin Layne,PIT,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+16,Isaiahh Loudermilk,PIT,0,0,0,0,1,0.0,1,0,1,0,0,0,0,0,0
+17,Tre Norwood,PIT,0,0,0,0,0,0.0,1,1,0,1,0,0,0,0,0
+18,Benny Snell Jr.,PIT,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+19,Robert Spillane,PIT,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+20,Derek Watt,PIT,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+21,Ahkello Witherspoon,PIT,0,0,0,0,1,0.0,1,1,0,1,0,0,0,0,0
+22,Ben Roethlisberger,PIT,0,0,0,0,0,0.0,0,0,0,0,0,1,7,0,0
+25,Mike Hilton,CIN,1,24,1,24,1,0.0,4,2,2,0,0,0,0,0,0
+26,Eli Apple,CIN,1,50,0,50,1,0.0,2,2,0,0,0,0,0,0,0
+27,B.J. Hill,CIN,0,0,0,0,0,1.0,4,3,1,2,1,0,0,0,0
+28,Trey Hendrickson,CIN,0,0,0,0,0,1.0,2,2,0,0,2,0,0,0,1
+29,Sam Hubbard,CIN,0,0,0,0,0,1.0,2,2,0,1,1,1,0,0,0
+30,Logan Wilson,CIN,0,0,0,0,0,0.0,6,6,0,0,0,0,0,0,0
+31,Markus Bailey,CIN,0,0,0,0,0,0.0,5,3,2,0,0,0,0,0,0
+32,Tre Flowers,CIN,0,0,0,0,0,0.0,4,2,2,0,0,0,0,0,0
+33,Vonn Bell,CIN,0,0,0,0,0,0.0,3,3,0,0,0,0,0,0,0
+34,Germaine Pratt,CIN,0,0,0,0,0,0.0,3,1,2,0,0,0,0,0,0
+35,D.J. Reader,CIN,0,0,0,0,0,0.0,3,2,1,0,0,0,0,0,0
+36,Michael Thomas,CIN,0,0,0,0,1,0.0,3,2,1,0,0,0,0,0,0
+37,Ricardo Allen,CIN,0,0,0,0,0,0.0,2,2,0,0,0,0,0,0,0
+38,Joe Bachie,CIN,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+39,Wyatt Ray,CIN,0,0,0,0,0,0.0,2,0,2,0,0,0,0,0,0
+40,Chidobe Awuzie,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+41,Tyler Boyd,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+42,Jalen Davis,CIN,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+43,Clay Johnston,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+44,Khalid Kareem,CIN,0,0,0,0,0,0.0,1,0,1,0,1,0,0,0,0
+45,Stanley Morgan Jr.,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+46,Larry Ogunjobi,CIN,0,0,0,0,0,0.0,1,1,0,0,1,0,0,0,0
+47,Darius Phillips,CIN,0,0,0,0,1,0.0,1,1,0,0,0,0,0,0,0
+48,Cameron Sample,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+49,Mike Thomas,CIN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+50,Jessie Bates III,CIN,0,0,0,0,1,0.0,0,0,0,0,0,0,0,0,0

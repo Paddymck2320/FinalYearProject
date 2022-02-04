@@ -1,105 +1,374 @@
-from bs4 import BeautifulSoup
-import pandas as pd
-import requests
-import numpy as np
+import os
+import pandas as pd, os
+import time
 
-class NFL_category_obj:
-    def __init__ (self, nfl_tuple: tuple):
+from Scraper_Dict import teams, teams2, team_conv, months
+from Scraper_Dict import adv_sch, adv_years, adv_type
+from Scraper_Dict import AdvPlayerDefHeaders, AdvPlayerPassHeaders, AdvPlayerRecHeaders
+from Scraper_Dict import AdvPlayerRushHeaders, PlayerDefHeaders, PlayerOffHeaders
+from Scraper_Dict import SnapCountHeaders, KickHeaders, ReturnHeaders, Head_struct
 
-        data_list = nfl_tuple[0].split(",")
 
-        if data_list[0] == "Offense":
-            self.tm_opp = "TM"
-            self.fense = "Offense"
+def buildWidgetHTMLs(year):
+    # building team widget htmls
+    sch_url = []
+    for i in teams:
+        url_int = 'https://widgets.sports-reference.com/wg.fcgi?css=1&site=pfr&url=%2Fteams%2F' + i + '%2F' + str(
+            year) + '.htm&div=div_games'
+        sch_url.insert(0, url_int)
+
+    return sch_url
+
+
+def readWidgetHTMLs(sch_url):
+    # reading team widget htmls
+    df_sch = []
+    for i in sch_url:
+        dflist = pd.read_html(i)
+        df_sch.append(dflist)
+
+    return df_sch  # return schedule
+
+
+def buildSchedule(year):
+    sch_url = buildWidgetHTMLs(year)
+    df_sch = readWidgetHTMLs(sch_url)
+    # pulling out team schedules
+
+    idx = 30
+    df_sch[idx + 1][0].insert(8, 'Team', teams[0])
+    dd = df_sch[idx + 1][0][df_sch[idx + 1][0].columns[[0, 2, 8, 9, 10]]]
+
+    for i in range(1, 32):
+        df_sch[idx][0].insert(8, 'Team', teams[i])
+        dd = dd.append(df_sch[idx][0][df_sch[idx][0].columns[[0, 2, 8, 9, 10]]])
+        idx = idx - 1
+
+    dd.columns = range(dd.shape[1])
+    dd.columns = ['Week', 'Date', 'Team', 'Home', 'Opp']
+
+    return dd
+
+
+def convertDates(dd, year):
+    dates = dd['Date']
+    dates.sort_index()
+    dlist = []
+    for i in dates:
+        m = i.split(' ', 1)[0]
+
+        m = months[m]
+        d = i.split(' ', 1)[1]
+        if len(d) < 2:
+            d = '0' + d
+        if m == '01':
+            dlist.append(str(year + 1) + m + d)
         else:
-            self.tm_opp = "OPP"
-            self.fense = "Defense"
+            dlist.append(str(year) + m + d)
 
-        self.category = data_list[1].upper()
-        self.columns = data_list[2:]
-        self.columns_not_wanted = nfl_tuple[1]
-
-#Offense tables
-o1 = 'Offense,Game_Stats,Rk,Team,G,Pts/G,TotPts,Scrm Plys,Yds/G,Yds/P,1st/G,3rd Md,3rd Att,3rd Pct,4th Md,4th Att,4th Pct,Pen,Pen Yds,ToP/G,FUM,Lost,TO,Year'
-o2 = 'Offense,Passing,Rk,Team,G,Pts/G,TotPts,Comp,Att,Pct,Att/G,Yds,Avg,Yds/G,TD,Int,1st,1st%,Lng,20+,40+,Sck,Rate,Year'
-o3 = 'Offense,rushing,Rk,Team,G,Pts/G,TotPts,Att,Att/G,Yds,Avg,Yds/G,TD,Lng,1st,1st%,20+,40+,FUM,Year'
-o4 = 'Offense,receiving,Rk,Team,G,Pts/G,TotPts,Rec,Yds,Avg,Yds/G,Lng,TD,20+,40+,1st,1st%,FUM,Year'
-o5 = 'Offense,kicking,Rk,Team,G,Pts/G,TotPts,KO,Yds,OOB,Avg,TB,Pct,Ret,Avg,TD,OSK,OSKR,Year'
-o6 = 'Offense,field_goals,Rk,Team,G,Pts/G,TotPts,FGM,FG Att,Pct,Blk,Lng,A-M,Pct,A-M,Pct,A-M,Pct,A-M,Pct,A-M,Pct,XPM,XP Att,Pct,Blk,Year'
-o7 = 'Offense,kick_returns,Rk,Team,G,Pts/G,TotPts,Ret,Yds,Avg,Lng,TD,20+,40+,FC,FUM,Ret,RetY,Avg,Lng,TD,20+,40+,FC,FUM,Year'
-o8 = 'Offense,punting,Rk,Team,G,Pts/G,TotPts,Punts,Yds,Net Yds,Lng,Avg,Net Avg,Blk,OOB,Dn,IN 20,TB,FC,Ret,RetY,TD,Year'
-o9 = 'Offense,scoring,Rk,Team,G,Pts/G,TotPts,Pts,Pts/G,Rsh,Rec,PRet,KRet,INT,FUM,Blk FG,Blk Pnt,XPM,FGM,SFTY,2-PT,Year'
-o10 = 'Offense,touchdowns,Rk,Team,G,Pts/G,TotPts,Total,Rsh,Rec,Ret,Def,Year'
-o11 = 'Offense,Offensive_line,Rk,Team,Exp,Att,Yds,Avg,TDs,1st,Neg,+10Y,Pwr,1st,Neg,+10Y,Pwr,1st,Neg,+10Y,Pwr,Sacks,QB Hits,Year'
-
-#Defence Tables
-d1 = 'Defense,Game_Stats,Rk,Team,G,Pts/G,TotPts,Scrm Plys,Yds/G,Yds/P,1st/G,3rd Md,3rd Att,3rd Pct,4th Md,4th Att,4th Pct,Pen,Pen Yds,ToP/G,FUM,Lost,Year'
-d2 = 'Defense,Passing,Rk,Team,G,Pts/G,TotPts,Comp,Att,Pct,Att/G,Yds,Avg,Yds/G,TD,Int,1st,1st%,Lng,20+,40+,Sck,Rate,Year'
-d3 = 'Defense,rushing,Rk,Team,G,Pts/G,TotPts,Att,Att/G,Yds,Avg,Yds/G,TD,Lng,1st,1st%,20+,40+,FUM,Year'
-d4 = 'Defense,receiving,Rk,Team,G,Pts/G,TotPts,Rec,Yds,Avg,Yds/G,Lng,TD,20+,40+,1st,1st%,FUM,Year'
-d5 = 'Defense,Scoring,Rk,Team,G,Pts/G,TotPts,Pts,Pts/G,Rsh,Rec,PRet,KRet,INT,FUM,Blk FG,Blk Pnt,XPM,FGM,SFTY,2-PT,Year'
-d6 = 'Defense,touchdowns,Rk,Team,G,Pts/G,TotPts,Total,Rsh,Rec,Ret,Def,Year'
-d7 = 'Defense,Tackles,Rk,Team,G,Pts/G,TotPts,Comb,Total,Ast,Sck,SFTY,PDef,Int,TDs,Yds,Lng,FF,Rec,TD,Year'
-d8 = 'Defense,interceptions,Rk,Team,G,Pts/G,TotPts,Comb,Total,Ast,Sck,SFTY,PDef,Int,TDs,Yds,Lng,FF,Rec,TD,Year'
-
-#creating an array for objects
-list_of_tables = [(o1,[]),(o2,['G','Pts/G','TotPts','TD']),(o3,['G','Pts/G','TotPts','TD']),
-                           (o4,['G','Pts/G','TotPts','Rec','Avg','Yds/G','Lng','TD','20+','40+','1st','1st%']),
-                           (o5,['G','Pts/G','TotPts']),(o6,['G','Pts/G','TotPts']),(o7,['G','Pts/G','TotPts']),
-                           (o8,['G','Pts/G','TotPts']),(o9,['G','Pts/G','TotPts','Pts','Pts/G','Rsh','Rec','PRet','KRet','XPM','FGM']),
-                           (o10,['G','Pts/G','TotPts','Ret',]),(o11,['Att','Yds','Avg','TDs']),
-                           (d1,[]),(d2,['G','Pts/G','TotPts','TD']),(d3,['G','Pts/G','TotPts','TD']),
-                           (d4,['G','Pts/G','TotPts','Rec','Avg','Yds/G','Lng','TD','20+','40+','1st','1st%']),
-                           (d5,['G','Pts/G','TotPts','Pts','Pts/G','Rsh','Rec']),(d6,['G','Pts/G','TotPts']),
-                           (d7,['G','Pts/G','TotPts','SFTY','PDef','Int','TDs','Yds','Lng']),(d8,['G','Pts/G','TotPts','Comb','Total','Ast','Sck','SFTY','FF','Rec','TD'])]
-
-list_of_NFL_category_objs = []
-for table in list_of_tables:
-    list_of_NFL_category_objs.append(NFL_category_obj(table))
+    dd = dd.drop(['Date'], axis=1)
+    dd.insert(1, 'Date', dlist)
+    return dd
 
 
+def buildWidgetBoxScore(year):
+    dd = buildSchedule(year)
 
-def scraper(nfl: object, offensive_category = 'null', defensive_category = 'null'):
-    if nfl.tm_opp == "TM":
-        offensive_category = nfl.category
+
+    url_df = pd.DataFrame()
+    matchup_df = pd.DataFrame()
+
+
+    dd = dd[dd['Home'].isna()]
+
+    # remove bye weeks
+    dd = dd[dd.Opp != 'Bye Week']
+    dd = dd[dd.Week != 'Wild Card']
+    dd = dd[dd.Week != 'Division']
+    dd = dd[dd.Week != 'Conf. Champ.']
+    dd = dd[dd.Date != 'Playoffs']
+
+    dd = convertDates(dd, year)
+    dd = dd.sort_values(by=['Date'])
+
+    for index, row in dd.iterrows():
+
+        dum_day = row['Date']
+        dum_opp = row['Opp']
+        dum_home = row['Team']
+
+        int_opp = team_conv[dum_opp]
+
+        dum_url = pd.DataFrame()
+        dum_matchup = pd.DataFrame()
+
+        for j in adv_type:
+            url_int = 'https://widgets.sports-reference.com/wg.fcgi?css=1&site=pfr&url=%2Fboxscores%2F' + dum_day + '0' + dum_home + '.htm&div=div_' + j
+            m_int = dum_day + '_' + j + '_' + dum_home + 'v' + int_opp
+
+            dum_url[j] = [url_int]
+            match_lbl = j + '_label'
+            dum_matchup[match_lbl] = [m_int]
+
+        url_df = url_df.append(dum_url)
+        matchup_df = matchup_df.append(dum_matchup)
+
+    # resetting index so dfs can be joined
+    dd.reset_index(drop=True, inplace=True)
+    url_df.reset_index(drop=True, inplace=True)
+    matchup_df.reset_index(drop=True, inplace=True)
+
+    dd = dd.join(url_df)
+    dd = dd.join(matchup_df)
+
+    return dd
+
+
+def readData(**kwargs):
+
+    year = int(kwargs.get('year', None))
+    week = int(kwargs.get('week', None))
+    multiple_weeks = kwargs.get('multiple_weeks', None)
+
+    dd = buildWidgetBoxScore(year)
+    dd['Week'] = dd['Week'].astype(int)
+
+    head = dd.columns.values.tolist()
+    head = [i for i in head if i not in ('Week', 'Date', 'Team', 'Home', 'Opp',
+                                         'passing_advanced_label', 'rushing_advanced_label', 'receiving_advanced_label',
+                                         'defense_advanced_label', 'player_offense_label', 'player_defense_label',
+                                         'home_snap_counts_label', 'vis_snap_counts_label', 'kicking_label',
+                                         'returns_label'
+                                         )]
+
+    label_head = dd.columns.values.tolist()
+    label_head = [i for i in label_head if i not in ('Week', 'Date', 'Team', 'Home', 'Opp',
+                                                     'passing_advanced', 'rushing_advanced', 'receiving_advanced',
+                                                     'defense_advanced', 'player_offense', 'player_defense',
+                                                     'home_snap_counts', 'vis_snap_counts', 'kicking', 'returns'
+                                                     )]
+
+    team_head = dd.columns.values.tolist()
+    team_head = [i for i in team_head if i not in ('Date', 'Home',
+                                                   'passing_advanced_label', 'rushing_advanced_label',
+                                                   'receiving_advanced_label',
+                                                   'defense_advanced_label', 'player_offense_label',
+                                                   'player_defense_label',
+                                                   'home_snap_counts_label', 'vis_snap_counts_label', 'kicking_label',
+                                                   'returns_label',
+                                                   'passing_advanced', 'rushing_advanced', 'receiving_advanced',
+                                                   'defense_advanced', 'player_offense', 'player_defense',
+                                                   'home_snap_counts', 'vis_snap_counts', 'kicking', 'returns'
+                                                   )]
+
+    if multiple_weeks is None:
+        multiple_weeks = False
+
+    if (multiple_weeks == True) & (week != 1):
+        pull_weeks = list(range(1, week + 1))
+
     else:
-        defensive_category = nfl.category
+        pull_weeks = [week]
 
-    print("###########################################")
-    print(nfl.fense + '_' + nfl.category)
+    df_int = dd[dd['Week'].isin(pull_weeks)]
 
-    answer = pd.DataFrame(columns=(nfl.columns))
-    i = 0
+    for index, row in df_int.iterrows():
+        lbl_hd_it = 0
+        enter_print = True
+        time.sleep(2)
+        for h in head:
 
-    for iterator in range(53):
-        # making soup
-        url = 'http://www.nfl.com/stats/categorystats?archive=true&conference=null&role=' + nfl.tm_opp + '&offensiveStatisticCategory=' + offensive_category + '&defensiveStatisticCategory=' + defensive_category + '&season=' + str(
-            iterator + 1967) + '&seasonType=REG&tabSeq=2&qualified=false&Submit=Go'
-        page = requests.get(url)
-        soup = BeautifulSoup(page.text, 'lxml')
-        table = soup.find('table', {'id': ['result']})
+            try:
+                df1 = pd.DataFrame(pd.read_html(row[h])[0])
+            except:
+                print('Tables not found for: ', h)
+            else:
+                df1 = pd.DataFrame(pd.read_html(row[h])[0])
 
-        try:
-            table_body = table.find('tbody')
-            rows = table_body.find_all('tr')
-            for row in rows:
-                cols = row.find_all('td')
-                cols = [ele.text.strip() for ele in cols]
-                cols.append(iterator + 1967)
-                answer.loc[i] = list(cols)
-                i = i + 1
+                print('Pulling data for: ', row[label_head[lbl_hd_it]])
+                # Adding Headers
+                if h == ('passing_advanced'):
+                    df1.columns = AdvPlayerPassHeaders
+                elif h == ('defense_advanced'):
+                    df1.columns = AdvPlayerDefHeaders
+                elif h == ('rushing_advanced'):
+                    df1.columns = AdvPlayerRushHeaders
+                elif h == ('receiving_advanced'):
+                    df1.columns = AdvPlayerRecHeaders
+                elif h == ('player_offense'):
+                    df1.columns = PlayerOffHeaders
+                elif h == ('player_defense'):
+                    df1.columns = PlayerDefHeaders
+                elif h == ('home_snap_counts'):
+                    df1.columns = SnapCountHeaders
+                    df1.insert(2, 'Tm', row[team_head[1]])
+                    df2 = df1
+                elif h == ('vis_snap_counts'):
+                    df1.columns = SnapCountHeaders
+                    df1.insert(2, 'Tm', team_conv[row[team_head[2]]])
+                    df1 = df2.append(df1)
+                elif h == ('kicking'):
+                    df1.columns = KickHeaders
+                elif h == ('returns'):
+                    df1.columns = ReturnHeaders
+
+                if (h != 'home_snap_counts') & (h != 'vis_snap_counts'):
+                    df1 = df1[df1.Player != 'Player']  # gets rid of header row separating teams
+                    df1 = df1.dropna(subset=['Player'])
+                    enter_print = True
+                elif h == ('vis_snap_counts'):
+                    enter_print = True
+                else:
+                    enter_print = False
+
+                if enter_print == True:
+                    outdir = './nfl_data' + '/' + str(year) + '/week' + str(row[team_head[0]]) + '/all_tables/'
+                    if not os.path.isdir(outdir):
+                        os.makedirs(outdir)
+                        print('new folder path created: ', outdir)
+
+                    df1 = df1.replace(teams, teams2)
+                    t = row[label_head[lbl_hd_it]] + 'data.csv'
+                    csv_title = os.path.join(outdir, t)
+
+                    pd.DataFrame(df1).to_csv(csv_title)
+
+            lbl_hd_it += 1
 
 
-        except AttributeError:
-            continue
+def build_df(year, week):
+    count = 0
 
-            # drop any repeated columns
-        answer.drop(columns=nfl.columns_not_wanted, inplace=True)
+    for w in range(week, week + 1):
+        t_path = './nfl_data' + '/' + str(year) + '/week' + str(w) + '/all_tables'
+        t_list = os.listdir(t_path)
 
-        answer = answer.add_prefix(str(nfl.fense) + '_' + str(nfl.category).lower() + '_')
+        for i in t_list:
+            statSplit = i.split('_')
+            gameDate = statSplit[0]
 
-        # write to excel
-        answer.to_excel(nfl.fense + '_' + nfl.category + ".xlsx")
+            fileRead = t_path + '/' + i
+            df = pd.read_csv(fileRead)
 
-    for nfl_obj in list_of_NFL_category_objs:
-        scraper(nfl_obj)
+            # Add column of game date
+            df["Date"] = gameDate
+            teams = df.Tm.unique()
+            df['Tm'] = df['Tm'].str.upper()
+
+            df = df.fillna(0)
+            df = df.drop(['Unnamed: 0'], axis=1)
+            df = df.astype(str)
+
+            if count > 0:
+                merge_key = df_int.columns.intersection(df.columns)
+                merge_key = merge_key.tolist()
+                # Make sure each column is data type string
+
+                # create an intermediate dataframe of all new data
+                dz = (df_int.merge(df, on=merge_key, how='left', indicator=True)
+                      .query('_merge == "left_only"')
+                      .drop('_merge', 1))
+                # merge intermediate dataframe with printable dataframe
+                df_int = pd.merge(df_int, df, on=merge_key, how='outer')
+                # drop duplicates if they are duplicated in both name and team (this helps with teams with players of similar names)
+                df_int = dz.append(df_int).drop_duplicates(subset=['Player', 'Tm'], keep='first')
+
+            else:
+                oldDate = gameDate
+                df_int = df
+            count += 1
+
+        if w == week:
+            for col in df_int.columns:
+                if (col != 'Player') & (col != 'Tm') & (col != 'Position'):
+                    df_int[col].values[:] = 0
+            df_empty = df_int
+
+    return df_empty
+
+
+def buildAggregate(**kwargs):
+    """A database Aggregator that works in concert with the PFR webscraper tool
+    Pro Football Reference (PFR)
+
+    Parameters
+    ----------
+    year : The season of which you wish to collect data.
+    week : The week you wish to collect data on or up to.
+
+    Returns
+    -------
+    None
+
+    Outputs
+    -------
+    A single .csv file that aggregates all weekly stat data provided by PFR
+    """
+    year = int(kwargs.get('year', None))
+    week = int(kwargs.get('week', None))
+    multiple_weeks = kwargs.get('multiple_weeks', None)
+
+    if multiple_weeks is None:
+        multiple_weeks = False
+
+    if multiple_weeks == True:
+        start_week = 1
+    else:
+        start_week = week
+
+    for w in range(start_week, week + 1):
+        t_path = './nfl_data' + '/' + str(year) + '/week' + str(w) + '/all_tables'
+        t_list = os.listdir(t_path)
+
+        df_shell = build_df(year, w)
+        df_shell['Opp'] = ""
+        count = 0
+
+        print('Polling all tables to intelligently build shell df...')
+        df_shell = df_shell.set_index(['Player', 'Tm'])
+
+        for i in t_list:
+            print('Reading in: ', i)
+            statSplit = i.split('_')
+            gameDate = statSplit[0]
+
+            fileRead = t_path + '/' + i
+            df = pd.read_csv(fileRead)
+
+            df = df.drop(['Unnamed: 0'], axis=1)
+            df['Tm'] = df['Tm'].str.upper()
+
+            teams = df.Tm.unique()
+            df["Date"] = gameDate
+
+            for j in teams:
+                if (len(teams) > 1):
+                    if (j == teams[0]):
+                        df.loc[df.Tm == j, "Opp"] = teams[1]
+                    else:
+                        df.loc[df.Tm == j, "Opp"] = teams[0]
+
+            df = df.fillna(0)
+            df = df.set_index(['Player', 'Tm'])
+            df = df.astype(str)
+            df = df[~df.index.duplicated()]
+            if count > 0:
+                # update pre-allocated df_int with new data
+                df_int.update(df)
+
+            else:
+                # only enter here if it is the first sheet of a week
+                oldDate = gameDate
+                df_int = df_shell
+                df_int.update(df)
+
+            count = + 1
+
+        df_int = df_int.reset_index()
+        df_int = df_int[Head_struct]
+        df_int = df_int.sort_values(['Tm', 'Position', 'Player'], ascending=[True, True, True])
+        df_int = df_int.reset_index(drop=True)
+        t = './nfl_data' + '/' + str(year) + '/week' + str(w) + '/CompiledData_week' + str(w) + '.csv'
+        pd.DataFrame(df_int).to_csv(t)
+        pprint = 'Week' + str(w) + " Aggregated .csv complete."
+        print(pprint)

@@ -1,0 +1,46 @@
+,Player,Tm,DefInt,DefIntYrds,DefIntTD,DefIntLng,DefPD,DefSk,DefCombo,DefSolo,DefAst,DefTFL,DefQBHit,DefFR,Defyds,DefTD,DefFF
+0,Caden Sterns,DEN,1,1,0,1,1,0.0,3,3,0,0,0,0,0,0,0
+1,Jonathon Cooper,DEN,0,0,0,0,0,2.0,4,3,1,2,2,0,0,0,0
+2,Kareem Jackson,DEN,0,0,0,0,0,0.0,9,7,2,1,0,0,0,0,0
+3,Baron Browning,DEN,0,0,0,0,0,0.0,6,4,2,0,1,0,0,0,0
+4,Ronald Darby,DEN,0,0,0,0,1,0.0,3,1,2,0,0,0,0,0,0
+5,Patrick Surtain II,DEN,0,0,0,0,1,0.0,3,2,1,0,0,0,0,0,0
+6,Kenny Young,DEN,0,0,0,0,0,0.0,3,1,2,0,0,0,0,0,0
+7,Kyle Fuller,DEN,0,0,0,0,1,0.0,2,1,1,0,0,0,0,0,0
+8,Shelby Harris,DEN,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+9,Justin Simmons,DEN,0,0,0,0,2,0.0,2,2,0,1,0,0,0,0,0
+10,DeShawn Williams,DEN,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+11,Jacob Bobenmoyer,DEN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+12,Mike Boone,DEN,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+13,Mike Ford,DEN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+14,Nate Hairston,DEN,0,0,0,0,1,0.0,1,1,0,0,0,0,0,0,0
+15,Jonathan Harris,DEN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+16,Shamar Stephen,DEN,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+17,Barrington Wade,DEN,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+18,Jonas Griffith,DEN,0,0,0,0,0,0.0,0,0,0,0,0,1,0,0,0
+19,Dre'Mont Jones,DEN,0,0,0,0,0,0.0,0,0,0,0,1,0,0,0,0
+20,Stephen Weatherly,DEN,0,0,0,0,0,0.0,0,0,0,0,1,0,0,0,0
+23,Micah Parsons,DAL,0,0,0,0,0,2.5,10,8,2,3,3,0,0,0,0
+24,Carlos Watkins,DAL,0,0,0,0,0,1.0,4,3,1,3,1,0,0,0,0
+25,Jourdan Lewis,DAL,0,0,0,0,0,0.5,7,5,2,1,1,0,0,0,0
+26,Leighton Vander Esch,DAL,0,0,0,0,0,0.0,12,7,5,1,0,0,0,0,0
+27,Jayron Kearse,DAL,0,0,0,0,1,0.0,9,5,4,0,0,0,0,0,0
+28,Keanu Neal,DAL,0,0,0,0,0,0.0,6,5,1,1,0,0,0,0,0
+29,Donovan Wilson,DAL,0,0,0,0,0,0.0,6,4,2,0,0,0,0,0,0
+30,Anthony Brown,DAL,0,0,0,0,0,0.0,3,2,1,0,0,0,0,0,0
+31,Tarell Basham,DAL,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+32,Quinton Bohanna,DAL,0,0,0,0,0,0.0,2,0,2,0,0,0,0,0,0
+33,Trevon Diggs,DAL,0,0,0,0,1,0.0,2,1,1,0,0,0,0,0,0
+34,Randy Gregory,DAL,0,0,0,0,0,0.0,2,2,0,0,1,0,0,0,0
+35,Justin Hamilton,DAL,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+36,Osa Odighizuwa,DAL,0,0,0,0,0,0.0,2,1,1,1,0,0,0,0,0
+37,Dorance Armstrong Jr.,DAL,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+38,Corey Clement,DAL,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+39,Luke Gifford,DAL,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+40,Chauncey Golston,DAL,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+41,C.J. Goodwin,DAL,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+42,Malik Hooker,DAL,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+43,Damontae Kazee,DAL,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+44,Dalton Schultz,DAL,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+45,Nahshon Wright,DAL,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+46,Kelvin Joseph,DAL,0,0,0,0,0,0.0,0,0,0,0,0,1,7,0,0

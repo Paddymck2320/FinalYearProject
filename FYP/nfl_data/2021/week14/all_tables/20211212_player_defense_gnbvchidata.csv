@@ -1,0 +1,47 @@
+,Player,Tm,DefInt,DefIntYrds,DefIntTD,DefIntLng,DefPD,DefSk,DefCombo,DefSolo,DefAst,DefTFL,DefQBHit,DefFR,Defyds,DefTD,DefFF
+0,Robert Quinn,CHI,0,0,0,0,0,2.0,2,2,0,2,2,0,0,0,0
+1,Trevis Gipson,CHI,0,0,0,0,0,1.0,1,1,0,1,1,0,0,0,0
+2,Artie Burns,CHI,0,0,0,0,0,0.0,9,6,3,0,0,0,0,0,0
+3,Eddie Jackson,CHI,0,0,0,0,1,0.0,9,7,2,0,0,0,0,0,0
+4,Roquan Smith,CHI,0,0,0,0,0,0.0,9,4,5,0,0,0,0,0,0
+5,Tashaun Gipson,CHI,0,0,0,0,0,0.0,8,5,3,0,0,0,0,0,0
+6,DeAndre Houston-Carson,CHI,0,0,0,0,0,0.0,5,4,1,0,0,0,0,0,0
+7,Alec Ogletree,CHI,0,0,0,0,0,0.0,5,1,4,0,0,0,0,0,0
+8,Angelo Blackson,CHI,0,0,0,0,0,0.0,4,3,1,0,0,0,0,0,0
+9,Margus Hunt,CHI,0,0,0,0,0,0.0,3,0,3,0,0,0,0,0,0
+10,Jaylon Johnson,CHI,0,0,0,0,1,0.0,3,3,0,0,0,0,0,0,0
+11,Deon Bush,CHI,0,0,0,0,0,0.0,2,2,0,0,0,0,0,0,0
+12,Xavier Crawford,CHI,0,0,0,0,0,0.0,2,2,0,0,0,0,0,0,0
+13,Eddie Goldman,CHI,0,0,0,0,0,0.0,2,1,1,0,0,0,0,0,0
+14,Bilal Nichols,CHI,0,0,0,0,0,0.0,2,1,1,0,1,0,0,0,0
+15,J.P. Holtz,CHI,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+16,Caleb Johnson,CHI,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+17,Christian Jones,CHI,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+18,Darnell Mooney,CHI,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+19,Kindle Vildor,CHI,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+20,Cody Whitehair,CHI,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+21,Cole Kmet,CHI,0,0,0,0,0,0.0,0,0,0,0,0,1,0,0,0
+24,Rasul Douglas,GNB,1,55,1,55,2,0.0,2,2,0,0,0,0,0,0,0
+25,Chandon Sullivan,GNB,1,1,0,1,1,0.0,2,1,1,0,0,0,0,0,0
+26,Preston Smith,GNB,0,0,0,0,0,2.0,4,3,1,1,3,0,0,0,1
+27,De'Vondre Campbell,GNB,0,0,0,0,0,0.0,16,9,7,0,0,0,0,0,0
+28,Krys Barnes,GNB,0,0,0,0,1,0.0,5,3,2,0,0,0,0,0,0
+29,Adrian Amos,GNB,0,0,0,0,1,0.0,4,3,1,0,0,0,0,0,0
+30,Henry Black,GNB,0,0,0,0,1,0.0,4,3,1,0,0,0,0,0,1
+31,Kenny Clark,GNB,0,0,0,0,0,0.0,3,2,1,0,3,0,0,0,0
+32,Tipa Galeai,GNB,0,0,0,0,0,0.0,3,0,3,0,0,0,0,0,0
+33,Rashan Gary,GNB,0,0,0,0,0,0.0,3,1,2,0,0,1,0,0,0
+34,Dean Lowry,GNB,0,0,0,0,0,0.0,3,1,2,0,1,0,0,0,0
+35,Darnell Savage Jr.,GNB,0,0,0,0,0,0.0,3,2,1,0,0,0,0,0,0
+36,Eric Stokes,GNB,0,0,0,0,1,0.0,2,2,0,0,0,0,0,0,0
+37,Corey Bojorquez,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+38,Oren Burks,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+39,Tyler Davis,GNB,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+40,Shemar Jean-Charles,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+41,Kingsley Keke,GNB,0,0,0,0,1,0.0,1,0,1,0,2,0,0,0,0
+42,Kevin King,GNB,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+43,Tyler Lancaster,GNB,0,0,0,0,0,0.0,1,0,1,0,0,0,0,0,0
+44,Tedarrell Slaton,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+45,Equanimeous St. Brown,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+46,Ty Summers,GNB,0,0,0,0,0,0.0,1,1,0,0,0,0,0,0,0
+47,AJ Dillon,GNB,0,0,0,0,0,0.0,0,0,0,0,0,1,3,0,0
