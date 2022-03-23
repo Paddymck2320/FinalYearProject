@@ -10,7 +10,6 @@ from Scraper_Dict import SnapCountHeaders, KickHeaders, ReturnHeaders, Head_stru
 
 
 def buildWidgetHTMLs(year):
-    # building team widget htmls
     sch_url = []
     for i in teams:
         url_int = 'https://widgets.sports-reference.com/wg.fcgi?css=1&site=pfr&url=%2Fteams%2F' + i + '%2F' + str(
@@ -21,19 +20,19 @@ def buildWidgetHTMLs(year):
 
 
 def readWidgetHTMLs(sch_url):
-    # reading team widget htmls
+
     df_sch = []
     for i in sch_url:
         dflist = pd.read_html(i)
         df_sch.append(dflist)
 
-    return df_sch  # return schedule
+    return df_sch
 
 
 def buildSchedule(year):
     sch_url = buildWidgetHTMLs(year)
     df_sch = readWidgetHTMLs(sch_url)
-    # pulling out team schedules
+
 
     idx = 30
     df_sch[idx + 1][0].insert(8, 'Team', teams[0])
@@ -81,7 +80,6 @@ def buildWidgetBoxScore(year):
 
     dd = dd[dd['Home'].isna()]
 
-    # remove bye weeks
     dd = dd[dd.Opp != 'Bye Week']
     dd = dd[dd.Week != 'Wild Card']
     dd = dd[dd.Week != 'Division']
@@ -113,7 +111,7 @@ def buildWidgetBoxScore(year):
         url_df = url_df.append(dum_url)
         matchup_df = matchup_df.append(dum_matchup)
 
-    # resetting index so dfs can be joined
+
     dd.reset_index(drop=True, inplace=True)
     url_df.reset_index(drop=True, inplace=True)
     matchup_df.reset_index(drop=True, inplace=True)
@@ -250,7 +248,7 @@ def build_df(year, week):
             fileRead = t_path + '/' + i
             df = pd.read_csv(fileRead)
 
-            # Add column of game date
+
             df["Date"] = gameDate
             teams = df.Tm.unique()
             df['Tm'] = df['Tm'].str.upper()
@@ -262,15 +260,13 @@ def build_df(year, week):
             if count > 0:
                 merge_key = df_int.columns.intersection(df.columns)
                 merge_key = merge_key.tolist()
-                # Make sure each column is data type string
 
-                # create an intermediate dataframe of all new data
                 dz = (df_int.merge(df, on=merge_key, how='left', indicator=True)
                       .query('_merge == "left_only"')
                       .drop('_merge', 1))
-                # merge intermediate dataframe with printable dataframe
+
                 df_int = pd.merge(df_int, df, on=merge_key, how='outer')
-                # drop duplicates if they are duplicated in both name and team (this helps with teams with players of similar names)
+
                 df_int = dz.append(df_int).drop_duplicates(subset=['Player', 'Tm'], keep='first')
 
             else:
@@ -288,22 +284,7 @@ def build_df(year, week):
 
 
 def buildAggregate(**kwargs):
-    """A database Aggregator that works in concert with the PFR webscraper tool
-    Pro Football Reference (PFR)
 
-    Parameters
-    ----------
-    year : The season of which you wish to collect data.
-    week : The week you wish to collect data on or up to.
-
-    Returns
-    -------
-    None
-
-    Outputs
-    -------
-    A single .csv file that aggregates all weekly stat data provided by PFR
-    """
     year = int(kwargs.get('year', None))
     week = int(kwargs.get('week', None))
     multiple_weeks = kwargs.get('multiple_weeks', None)
@@ -353,11 +334,9 @@ def buildAggregate(**kwargs):
             df = df.astype(str)
             df = df[~df.index.duplicated()]
             if count > 0:
-                # update pre-allocated df_int with new data
                 df_int.update(df)
 
             else:
-                # only enter here if it is the first sheet of a week
                 oldDate = gameDate
                 df_int = df_shell
                 df_int.update(df)
