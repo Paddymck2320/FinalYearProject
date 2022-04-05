@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Final Year Project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-github{font-size:200px}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: red;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="Index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="Week1.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Weekly Predictions</a>
+    <a href="offensive_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Offensive Stats</a>
+    <a href="defensive_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Defensive Stats</a>
+    <a href="team_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Team Stats</a>
+      <a href="superbowl_predictions.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">SuperBowl Prediction</a>
+  </div>
+
+
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="Week1.html" class="w3-bar-item w3-button w3-padding-large">Weekly Predictions</a>
+    <a href="offensive_stats.html" class="w3-bar-item w3-button w3-padding-large">Offensive Stats</a>
+    <a href="defensive_stats.html" class="w3-bar-item w3-button w3-padding-large">Defensive Stats</a>
+    <a href="team_stats.html" class="w3-bar-item w3-button w3-padding-large">Team Stats</a>
+    <a href="superbowl_predictions.html" class="w3-bar-item w3-button w3-padding-large">SuperBowl Predictions</a>
+  </div>
+</div>
+
+
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Weekly Predictions</h1>
+</header>
+
+
+<div class="w3-row-padding w3-padding-64 w3-container w3-center" style="padding-left: 750px">
+    <h2 class="w3-margin w3-xLarge" style="text-align: left">Week 1 Predictions</h2>
+       <table class="table table-bordered table-hover table-condensed">
+        <thead><tr><th title="Field #1">Home team</th>
+        <th title="Field #2">Away team</th>
+        <th title="Field #3">week</th>
+        <th title="Field #4">Predicted winner</th>
+        <th title="Field #5">Actual winner</th>
+        <th title="Field #6">Win probability</th>
+        <th title="Field #7">Correct prediction</th>
+        </tr></thead>
+        <tbody><tr>
+            <td>TEN</td>
+            <td>ARI</td>
+            <td>1</td>
+            <td>TEN</td>
+            <td>ARI</td>
+            <td align="right">0.552932134</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>LV</td>
+            <td>BAL</td>
+            <td>1</td>
+            <td>BAL</td>
+            <td>LV</td>
+            <td align="right">0.685555095</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>LA</td>
+            <td>CHI</td>
+            <td>1</td>
+            <td>LA</td>
+            <td>LA</td>
+            <td align="right">0.593037429</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>KC</td>
+            <td>CLE</td>
+            <td>1</td>
+            <td>CLE</td>
+            <td>KC</td>
+            <td align="right">0.541178115</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>TB</td>
+            <td>DAL</td>
+            <td>1</td>
+            <td>TB</td>
+            <td>TB</td>
+            <td align="right">0.666901124</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>NYG</td>
+            <td>DEN</td>
+            <td>1</td>
+            <td>NYG</td>
+            <td>DEN</td>
+            <td align="right">0.553375273</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>NO</td>
+            <td>GB</td>
+            <td>1</td>
+            <td>GB</td>
+            <td>NO</td>
+            <td align="right">0.648457489</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>HOU</td>
+            <td>JAX</td>
+            <td>1</td>
+            <td>HOU</td>
+            <td>HOU</td>
+            <td align="right">0.651015522</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>WAS</td>
+            <td>LAC</td>
+            <td>1</td>
+            <td>LAC</td>
+            <td>LAC</td>
+            <td align="right">0.56023017</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>NE</td>
+            <td>MIA</td>
+            <td>1</td>
+            <td>MIA</td>
+            <td>MIA</td>
+            <td align="right">0.594108609</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>CIN</td>
+            <td>MIN</td>
+            <td>1</td>
+            <td>MIN</td>
+            <td>CIN</td>
+            <td align="right">0.703790576</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>CAR</td>
+            <td>NYJ</td>
+            <td>1</td>
+            <td>CAR</td>
+            <td>CAR</td>
+            <td align="right">0.509909183</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>ATL</td>
+            <td>PHI</td>
+            <td>1</td>
+            <td>ATL</td>
+            <td>PHI</td>
+            <td align="right">0.595101033</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>BUF</td>
+            <td>PIT</td>
+            <td>1</td>
+            <td>BUF</td>
+            <td>PIT</td>
+            <td align="right">0.66014735</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>IND</td>
+            <td>SEA</td>
+            <td>1</td>
+            <td>IND</td>
+            <td>SEA</td>
+            <td align="right">0.583119113</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>DET</td>
+            <td>SF</td>
+            <td>1</td>
+            <td>SF</td>
+            <td>SF</td>
+            <td align="right">0.665570562</td>
+            <td>1</td>
+        </tr>
+    </tbody></table>
+</div>
+
+<div style="padding-left: 1025px">
+    <a href="Week1.html" class="previous round">&#8249;</a>
+    <a href="WeeklyPred/Week2.html" class="next round">&#8250;</a>
+</div>
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Creator: Patrick Mckiernan</h1>
+</div>
+
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fab fa-github w3-hover-opacity"></i>
+ </div>
+</footer>
+
+<script>
+
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+</body>
+</html>

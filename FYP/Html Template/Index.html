@@ -1,27 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>NFL Predictor</title>
-    <link rel="stylesheet" href="Style/StyleSheet.css">
+<title>Final Year Project</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-github{font-size:200px}
+</style>
 </head>
 <body>
-<div class="logo">
-    <img src="Images/nfl.jpeg"/>
+
+
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="Index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="Week1.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Weekly Predictions</a>
+    <a href="offensive_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Offensive Stats</a>
+    <a href="defensive_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Defensive Stats</a>
+    <a href="team_stats.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Team Stats</a>
+      <a href="superbowl_predictions.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">SuperBowl Prediction</a>
+  </div>
+
+
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="Week1.html" class="w3-bar-item w3-button w3-padding-large">Weekly Predictions</a>
+    <a href="offensive_stats.html" class="w3-bar-item w3-button w3-padding-large">Offensive Stats</a>
+    <a href="defensive_stats.html" class="w3-bar-item w3-button w3-padding-large">Defensive Stats</a>
+    <a href="team_stats.html" class="w3-bar-item w3-button w3-padding-large">Team Stats</a>
+    <a href="superbowl_predictions.html" class="w3-bar-item w3-button w3-padding-large">SuperBowl Predictions</a>
+  </div>
 </div>
-<div class="header">
-    <h1>NFL Project</h1>
-</div>
-<div class="logo1">
-    <img src="Images/nfl.jpeg"/>
-</div>
-    <div class="topnav">
-      <a href="Index.html">Home</a>
-      <a href="#news">Predictions</a>
-      <a href="Stats.html">Stats</a>
-      <a href="#about">About</a>
+
+
+<header class="w3-container w3-red w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">NFL Predictor</h1>
+  <p class="w3-xlarge">Final Year Predicton Project for the NFL Season of 2021</p>
+</header>
+
+
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Predictions</h1>
+      <h5 class="w3-padding-32">This is a Brief paragraph on how the predictions Work.</h5>
+
+      <p class="w3-text-grey">I have two seperate python functions the first one is for predicting the weekly games in the nfl from
+      week 1 right through to week 18 in the weekly predictions tab in the web page I have the predictions made are displayed in the
+      tables for each week. The other python function uses data from recent years and also gives the predictions in a table form by displaying
+      the probable winner of the superbowl in 2021.</p>
     </div>
 
+    <div class="w3-xlarge w3-padding-32">
+      <i class='fab fa-github w3-padding-64 w3-text-red w3-hover-opacity' style="padding-left: 30px"></i>
+    </div>
+  </div>
+</div>
+
+
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Creator: Patrick Mckiernan</h1>
+</div>
+
+
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fab fa-github w3-hover-opacity"></i>
+ </div>
+</footer>
+
+<script>
+
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
 
 </body>
 </html>
