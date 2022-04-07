@@ -1,0 +1,3 @@
+home_team,away_team,week,predicted_winner,actual_winner,win_probability,correct_prediction
+KC,CIN,21,KC,CIN,0.6106412005074546,0
+LA,SF,21,LA,LA,0.517587579868282,1

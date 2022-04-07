@@ -1,0 +1,5 @@
+home_team,away_team,week,predicted_winner,actual_winner,win_probability,correct_prediction
+KC,BUF,20,BUF,KC,0.5767455732706694,0
+TEN,CIN,20,TEN,CIN,0.5341243726440418,0
+TB,LA,20,TB,LA,0.5301545832598223,0
+GB,SF,20,SF,SF,0.5028419137436484,1

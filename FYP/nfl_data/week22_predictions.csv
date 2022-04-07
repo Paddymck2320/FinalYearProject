@@ -1,0 +1,2 @@
+home_team,away_team,week,predicted_winner,actual_winner,win_probability,correct_prediction
+CIN,LA,22,LA,LA,0.5549598564785363,1
